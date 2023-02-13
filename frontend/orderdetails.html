@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Order Detail</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Pizza Project</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Hung</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Quản trị
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="customers.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Customers</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="payments.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Payments</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Orders</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orderdetails.html" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Order Details</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="products.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productlines.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Product Lines</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="employees.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Employees</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="offices.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Offices</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="filterorders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Filter Orders</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-12 text-center">
+                            <h1>Quản trị Order Details</h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="container-fluid">
+
+                                        <button id="btn-create-order-detail" class="btn btn-success">Add New Order Detail</button>
+
+                                    </div>
+                                    <hr class="border">
+                                    <h3 class="text-center">Order Detail Table</h3>
+                                    <table class="table table-bordered table-striped table-hover text-center" id="order-detail-table">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Order ID</th>
+                                                <th>Product Name</th>
+                                                <th>Quantity Order</th>
+                                                <th>Price Each</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            <tbody>
+
+                                            </tbody>
+                                    </table>
+                                    <!-- modal create order detail-->
+                                    <div class="modal" id="modal-create-order-detail" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Add New Order Detail</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Order ID</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-order-id" class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Product Name</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <select id="select-product-id" class="form-control border-primary">
+                                                                    <option value="none">--Chọn Product--</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Quantity Order</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-quantity-order" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Price Each</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-price-each" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success confirm-create">Create</button>
+                                                    <button type="button" class="btn btn-danger cancel-create" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- modal update order -->
+                                    <div class="modal" id="modal-update-order-detail" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Update Order Detail</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Order Detail ID</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-order-detail-id" class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Order ID</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-order-id" class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Product ID</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-product-id" class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Quantity Order</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-quantity-order" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Price Each</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-price-each" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success confirm-update">Update</button>
+                                                    <button type="button" class="btn btn-danger cancel-update" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- modal xóa order -->
+                                    <div class="modal" tabindex="-1" role="dialog" id="modal-delete-order-detail">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Delete Order Detail</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Bạn có muốn xóa Order Detail này không?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" id="btn-confirm-delete">Confirm</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+</body>
+<script>
+    $(document).ready(function() {
+        /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+        //định nghĩa table country
+        const gCOL_ORDER_DETAIL_ID = 0;
+        const gCOL_ORDER_ID = 1;
+        const gCOL_PRODUCT_NAME = 2;
+        const gCOL_QUANTITY_ORDER = 3;
+        const gCOL_PRICE_EACH = 4;
+        const gCOL_ACTION = 5;
+
+        var gSTT = 1;
+        var gData = [];
+        var gOrderDetailId = 0;
+        var gOrderId = 0;
+        var gProductId = 0;
+        var gProductName = "";
+        var gProductDetail = [];
+        var gProduct = [];
+        var gProductSelectedId = 0;
+        const gCOLS = ["id", "orderId", "product.productName", "quantityOrder", "priceEach", "action"];
+        var gTableOrderDetail = $("#order-detail-table").DataTable({
+            columns: [{
+                data: gCOLS[gCOL_ORDER_DETAIL_ID]
+            }, {
+                data: gCOLS[gCOL_ORDER_ID]
+            }, {
+                data: gCOLS[gCOL_PRODUCT_NAME]
+            }, {
+                data: gCOLS[gCOL_QUANTITY_ORDER]
+            }, {
+                data: gCOLS[gCOL_PRICE_EACH]
+            }, {
+                data: gCOLS[gCOL_ACTION]
+            }],
+            columnDefs: [{
+                targets: gCOL_ORDER_DETAIL_ID,
+                render: function() {
+                    return gSTT++;
+                }
+            }, {
+                targets: gCOL_ORDER_ID,
+                render: function() {
+                    return gOrderId;
+                }
+            }, {
+                "targets": gCOL_ACTION,
+                "defaultContent": `<i class="far fa-edit edit-order-detail" style= "color : green ; cursor: pointer;" title="Edit " ></i>  
+                                <i class="fas fa-trash-alt delete-order-detail" style= "color : red ; cursor: pointer;" title="Delete"></i>`
+            }],
+            searching: false,
+        });
+
+        /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+
+        onPageLoading();
+        //Gán event handler khi click vào hàng bất kỳ
+        $("#order-detail-table").on("click", "td", function() {
+            onOrderDetailTableRowClick(this);
+        });
+
+        // gán sự kiện cho nút add payment
+        $("#btn-create-order-detail").on("click", function() {
+            $("#modal-create-order-detail").modal("show");
+            $("#inp-create-order-id").val(gOrderId);
+            callApiGetAllProductLoadToSelect();
+        });
+        $('#select-product-id').on('change', function() {
+            onBtnChangeIdSelectProduct();
+        });
+        // confirm payment create
+        $(document).on("click", ".confirm-create", function() {
+            onBtnCreateOrderDetailClick();
+        });
+        // cancel payment create
+        $(".cancel-create").on("click", function() {
+            $("#modal-create-order-detail").modal("hide");
+        });
+        // gán sự kiện cho nút update payment
+        $(document).on("click", ".edit-order-detail", function() {
+            $("#modal-update-order-detail").modal("show");
+            onOrderDetailTableRowClick(this);
+        });
+        // confirm payment update
+        $(".confirm-update").on("click", function() {
+            onBtnUpdateOrderDetailClick();
+        });
+        // cancel payment update
+        $(".cancel-update").on("click", function() {
+            $("#modal-update-order-detail").modal("hide");
+        });
+
+        // gán sự kiện cho nút delete payment
+        $(document).on("click", ".delete-order-detail", function() {
+            $("#modal-delete-order-detail").modal("show");
+            onOrderDetailTableRowClick(this);
+        });
+        // delete payment confirm
+        $("#btn-confirm-delete").on("click", function() {
+            onBtnDeleteOrderDetailClick();
+        });
+        /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+        //hàm load trang
+        function onPageLoading() {
+            "use strict";
+            var vUrlString = window.location.href;
+            console.log(vUrlString);
+            var vUrl = new URL(vUrlString);
+            var vGetValueId = vUrl.searchParams.get("orderId");
+            const vFORM_LIST_VIEW = "orders.html";
+            if (vGetValueId == null || vGetValueId == "") {
+                alert("Không có Order ID");
+                window.location.href = vFORM_LIST_VIEW;
+            }
+            gOrderId = vGetValueId;
+            console.log("order ID = ", gOrderId);
+            callApiGetOrderDetailShowOnTable();
+        }
+        //Hàm thực thi khi click vào hàng bất kỳ
+        function onOrderDetailTableRowClick(paramTableCell) {
+            var vClickedRow = $(paramTableCell).parents("tr");
+            var vRowData = gTableOrderDetail.row(vClickedRow).data();
+            gOrderDetailId = vRowData.id;
+            console.log("Đã click vào row có id là: " + gOrderDetailId);
+            callAjaxApiGetOrderDetailById(gOrderDetailId);
+        }
+        //Hàm gọi API để lấy dữ liệu product theo id
+        function callAjaxApiGetProductById(paramId) {
+            $.ajax({
+                url: "http://localhost:8080/product/service/detail/" + paramId,
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+        }
+
+
+        //Hàm thực thi khi nhấn nút add payment
+        function onBtnCreateOrderDetailClick() {
+            var vObj = {
+                quantityOrder: $("#inp-create-quantity-order").val().trim(),
+                priceEach: $("#inp-create-price-each").val().trim(),
+            };
+
+            var vCheck = validateCreateOrderDetailData(vObj);
+            if (vCheck == true) {
+
+                $.ajax({
+                    url: "http://localhost:8080/orderDetail/service/create/" + gOrderId + "/" + gProductSelectedId,
+                    type: "POST",
+                    contentType: "application/json",
+                    async: false,
+                    data: JSON.stringify(vObj),
+                    success: function(res) {
+                        console.log(res);
+                        alert("Tạo Order Detail mới thành công");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        console.log(err.responseText);
+                    }
+                });
+            }
+
+        }
+
+        //Hàm thực thi khi nhấn nút update payment
+        function onBtnUpdateOrderDetailClick() {
+            "use strict";
+            if (gOrderDetailId == 0) {
+                alert("Hãy click chọn Order Detail cần chỉnh sửa!");
+            } else {
+                var vObj = {
+                    quantityOrder: $("#inp-update-quantity-order").val().trim(),
+                    priceEach: $("#inp-update-price-each").val().trim()
+                };
+            };
+            var vCheck = validateUpdateOrderDetailData(vObj);
+            if (vCheck) {
+                $.ajax({
+                    url: "http://localhost:8080/orderDetail/service/update/" + gOrderDetailId,
+                    type: "PUT",
+                    contentType: "application/json; charset=UTF-8",
+                    data: JSON.stringify(vObj),
+                    success: function(res) {
+                        console.log(res);
+                        alert("Cập nhật Order Detail thành công");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        console.log(err.responseText);
+                    }
+                });
+            };
+        }
+
+
+        //Hàm thực thi khi nhấn nút Delete order detail
+        function onBtnDeleteOrderDetailClick() {
+            "use strict";
+            console.log(gOrderDetailId);
+            if (gOrderDetailId == 0) {
+                alert("Hãy click chọn Order Detail cần xóa!");
+            } else {
+                $.ajax({
+                    url: "http://localhost:8080/orderDetail/service/delete/" + gOrderDetailId,
+                    type: "DELETE",
+                    dataType: "json",
+                    success: function(res) {
+                        console.log(res);
+                        alert("Xóa Order Detail thành công");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        console.log(err.response);
+                    }
+                });
+            }
+        }
+
+        //Hàm gọi APi lấy ra toàn bộ order detail theo order ID
+        function callApiGetOrderDetailShowOnTable() {
+            "use strict";
+            /*var vOrderDetail = {
+                id: 0,
+                productName: "",
+                quantityOrder: "",
+                priceEach: ""
+            };*/
+            $.ajax({
+                url: "http://localhost:8080/orderDetail/service/orderId/" + gOrderId,
+                type: "GET",
+                async: false,
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    gData = res;
+                    /*for (var bI = 0; bI < res.length; bI++) {
+                        vOrderDetail = {
+                            id: res[bI].id,
+                            productName: res[bI].product.productName,
+                            quantityOrder: res[bI].quantityOrder,
+                            priceEach: res[bI].priceEach
+                        }
+                        gData = gData.push(vOrderDetail);
+                    }*/
+                    gTableOrderDetail.clear();
+                    gTableOrderDetail.rows.add(res);
+                    gTableOrderDetail.draw();
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+
+        }
+
+        //Hàm gọi API để lấy dữ liệu customer theo id
+        function callAjaxApiGetOrderDetailById(paramId) {
+            $.ajax({
+                url: "http://localhost:8080/orderDetail/service/detail/" + paramId,
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    gProductId = res.product_id;
+                    loadOrderDetailDataToForm(res);
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+        }
+        //Hàm load dữ liệu department lên form
+        function loadOrderDetailDataToForm(paramRes) {
+            $("#inp-update-order-detail-id").val(paramRes.id);
+            $("#inp-update-order-id").val(gOrderId);
+            $("#inp-update-product-id").val(paramRes.product_id);
+            $("#inp-update-quantity-order").val(paramRes.quantityOrder);
+            $("#inp-update-price-each").val(paramRes.priceEach);
+        }
+
+        //Hàm validate create department
+        function validateCreateOrderDetailData(paramObj) {
+            "use strict"
+            if (paramObj.quantityOrder === "") {
+                alert("Hãy nhập Quantity Order!");
+                return false;
+            } else if (paramObj.priceEach === "") {
+                alert("Hãy nhập price each");
+                return false;
+            }
+            return true;
+        }
+
+        // validate update album
+        function validateUpdateOrderDetailData(paramObj) {
+            "use strict"
+            if (paramObj.quantityOrder === "") {
+                alert("Hãy nhập Quantity Order!");
+                return false;
+            } else if (paramObj.priceEach === "") {
+                alert("Hãy nhập price each");
+                return false;
+            }
+            return true;
+        }
+
+        function callApiGetAllProductLoadToSelect() {
+            "use strict";
+            $.ajax({
+                url: "http://localhost:8080/product/service/all",
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    gProduct = res;
+                    loadDataIntoSelect(gProduct);
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+
+        }
+
+        function loadDataIntoSelect(paramObject) {
+            for (var bI = 0; bI < paramObject.length; bI++) {
+                $('#select-product-id').append($('<option>', {
+                    value: paramObject[bI].id,
+                    text: paramObject[bI].productName
+                }));
+            }
+        }
+
+        function onBtnChangeIdSelectProduct() {
+            "use strict";
+            gProductSelectedId = $("#select-product-id").val(); // lấy ra provinceId từ select đc chọn
+            console.log("Sản phẩm được chọn có Id: " + gProductSelectedId);
+        }
+
+    });
+</script>
+
+</html>

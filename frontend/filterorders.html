@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Pizza Project</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">hung</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Quản trị
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="payments.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Payments</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Orders</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orderdetails.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Order Details</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="products.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productlines.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Product Lines</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="employees.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Employees</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="offices.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="filterorders.html" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Filter Orders</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-12 text-center">
+                            <h1>Danh sách Order</h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <h5>Thông tin Khách hàng</h5>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-3">
+                                                <label>Customer Fullname</label>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <select id="select-customer-name" class="form-control">
+                                                    <option value = "">---Select Customer Fullname---</option>
+                                                  </select>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <button class="btn btn-success" id="btn-filter-order">Lọc dữ liệu</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="border">
+                    <h3 class="text-center">Order Table</h3>
+                    <table class="table table-bordered table-striped table-hover text-center" id="order-table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Order Date</th>
+                                <th>Required Date</th>
+                                <th>Shipped Date</th>
+                                <th>Status</th>
+                                <th>Comments</th>
+                                <th>Customer ID</th>
+                            </tr>
+                            <tbody>
+
+                            </tbody>
+                    </table>
+
+                </div>
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+</body>
+<script>
+    $(document).ready(function() {
+        /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+        //định nghĩa table country
+        const gCOL_ID = 0;
+        const gCOL_ORDER_DATE = 1;
+        const gCOL_REQUIRED_DATE = 2;
+        const gCOL_SHIPPED_DATE = 3;
+        const gCOL_STATUS = 4;
+        const gCOL_COMMENTS = 5;
+        const gCOL_CUSTOMER_ID = 6;
+
+        var gCustomerId = 0;
+        var gSTT = 1;
+
+        const gCOLS = ["id", "orderDate", "requiredDate", "shippedDate", "status", "comments", "customerId"];
+
+        var gTableOrder = $("#order-table").DataTable({
+            columns: [{
+                data: gCOLS[gCOL_ID]
+            }, {
+                data: gCOLS[gCOL_ORDER_DATE]
+            }, {
+                data: gCOLS[gCOL_REQUIRED_DATE]
+            }, {
+                data: gCOLS[gCOL_SHIPPED_DATE]
+            }, {
+                data: gCOLS[gCOL_STATUS]
+            }, {
+                data: gCOLS[gCOL_COMMENTS]
+            }, {
+                data: gCOLS[gCOL_CUSTOMER_ID]
+            }],
+            columnDefs: [{
+                targets: gCOL_ID,
+                render: function() {
+                    return gSTT++;
+                }
+            }, {
+                targets: gCOL_CUSTOMER_ID,
+                render: function() {
+                    return gCustomerId;
+                }
+            }],
+            searching: false,
+        });
+
+        /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+        onPageLoading();
+        //Gán event handler khi click vào hàng bất kỳ
+        $("#btn-filter-order").on("click", function() {
+            onBtnFilterOrderClick();
+        })
+
+
+        function onPageLoading() {
+            // lấy data từ server
+            callApiGetAllCustomer();
+        }
+        //Hàm gọi APi lấy ra toàn bộ customer
+        function callApiGetAllCustomer() {
+            "use strict";
+            $.ajax({
+                url: "http://localhost:8080/customers/service/all",
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    loadDataIntoSelect(res);
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+
+        }
+
+        function loadDataIntoSelect(paramObject) {
+            for (var bI = 0; bI < paramObject.length; bI++) {
+                $('#select-customer-name').append($('<option>', {
+                    value: paramObject[bI].id,
+                    text: paramObject[bI].firstName + " " + paramObject[bI].lastName
+                }));
+            }
+        }
+
+        // hàm xử lý sự kiện khi nhấn nút lọc
+        function onBtnFilterOrderClick() {
+            //B1. Khai báo biên và thu thập dữ liệu
+            gCustomerId = $("#select-customer-name option:selected").val();
+            console.log(gCustomerId);
+            //B2. Kiểm tra dữ liệu (bỏ qua)
+            //B3. Lọc dữ liệu và hiển thị kết quả
+            callApiGetOrderShowOnTable(gCustomerId);
+            // loadDataToTable(filteredOrder);
+        }
+
+
+        function callApiGetOrderShowOnTable(paramCustomer) {
+            "use strict";
+            $.ajax({
+                url: "http://localhost:8080/order/service/customerId/" + paramCustomer,
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    gTableOrder.clear();
+                    gTableOrder.rows.add(res);
+                    gTableOrder.draw();
+
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+
+        }
+
+
+    });
+</script>
+
+</html>

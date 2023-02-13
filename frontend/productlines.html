@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product Line</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Pizza Project</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Hung</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Quản trị
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="payments.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Payments</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Orders</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orderdetails.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Order Details</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="products.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productlines.html" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Product Lines</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="employees.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Employees</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="offices.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>product-lines</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="filterorders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Filter Orders</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-12 text-center">
+                            <h1>Quản trị Product Line</h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="container">
+                                        <button id="btn-create-product-line" class="btn btn-success">Add New Product Line</button>
+                                    </div>
+                                    <hr class="border">
+                                    <h3 class="text-center">Product Line Table</h3>
+                                    <table class="table table-bordered table-striped table-hover text-center" id="product-line-table">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Product Line</th>
+                                                <th>Description</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            <tbody>
+
+                                            </tbody>
+                                    </table>
+                                    <!-- modal create product-line-->
+                                    <div class="modal" id="modal-create-product-line" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Create product line</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Product Line</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-product-line" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Description</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-description" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success confirm-create">Confirm</button>
+                                                    <button type="button" class="btn btn-danger cancel-create" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- modal update product-line -->
+                                <div class="modal" id="modal-update-product-line" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Update Product Line</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="col-12">
+                                                    <div class="row form-group">
+                                                        <div class="col-4">
+                                                            <label for="" class="font-weight-bold">ID</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inp-update-id" class="form-control" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row form-group">
+                                                        <div class="col-4">
+                                                            <label for="" class="font-weight-bold">Product Line</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inp-update-product-line" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row form-group">
+                                                        <div class="col-4">
+                                                            <label for="" class="font-weight-bold">Description</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inp-update-description" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success confirm-update">Confirm</button>
+                                                <button type="button" class="btn btn-danger cancel-update" data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- modal xóa product-line -->
+                            <div class="modal" tabindex="-1" role="dialog" id="modal-delete-product-line">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Delete Product Line</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Bạn có muốn xóa Product Line này không?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" id="btn-confirm-delete">Xác nhận</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+</body>
+<script>
+    $(document).ready(function() {
+        /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+        //định nghĩa table country
+        const gCOL_ID = 0;
+        const gCOL_PRODUCT_LINE = 1;
+        const gCOL_DESCRIPTION = 2;
+        const gCOL_ACTION = 3;
+
+
+        var gProductLineId = 0;
+        const gCOLS = ["id", "productLine", "description", "action"];
+        var gTableProductLine = $("#product-line-table").DataTable({
+            columns: [{
+                data: gCOLS[gCOL_ID]
+            }, {
+                data: gCOLS[gCOL_PRODUCT_LINE]
+            }, {
+                data: gCOLS[gCOL_DESCRIPTION]
+            }, {
+                data: gCOLS[gCOL_ACTION]
+            }],
+            columnDefs: [{
+                "targets": gCOL_ACTION,
+                "defaultContent": `<i class="far fa-edit edit-product-line" style= "color : green ; cursor: pointer;" title="Edit " ></i>  
+                                <i class="fas fa-trash-alt delete-product-line" style= "color : red ; cursor: pointer;" title="Delete"></i>`
+            }],
+            searching: false,
+        });
+
+        /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+        onPageLoading();
+        //Gán event handler khi click vào hàng bất kỳ
+        $("#product-line-table").on("click", "td", function() {
+            onProductLineTableRowClick(this);
+        });
+
+        // gán sự kiện cho nút add product-line
+        $("#btn-create-product-line").on("click", function() {
+            $("#modal-create-product-line").modal("show");
+        });
+
+        // confirm create modal
+        $(".confirm-create").on("click", function() {
+            onBtnCreateProductLineClick();
+        });
+
+        // cancel create modal
+        $(".cancel-create").on("click", function() {
+            $("#modal-create-product-line").modal("hide");
+        });
+
+        // gán sự kiện cho nút update product-line
+        $(document).on("click", ".edit-product-line", function() {
+            $("#modal-update-product-line").modal("show");
+        });
+
+        // nút confirm update 
+        $(".confirm-update").on("click", function() {
+            onBtnUpdateProductLineClick();
+        });
+
+        // cancel update 
+        $(".cancel-update").on("click", function() {
+            $("#modal-update-product-line").modal("hide");
+        });
+
+        // gán sự kiện cho nút delete product
+        $(document).on("click", ".delete-product-line", function() {
+            $("#modal-delete-product-line").modal("show");
+            onProductLineTableRowClick(this);
+
+        });
+        // delete product confirm
+        $("#btn-confirm-delete").on("click", function() {
+            onBtnDeleteProductLineClick();
+        });
+
+
+        /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+        //hàm load trang
+        function onPageLoading() {
+            "use strict";
+            callApiGetAllProductLine();
+        }
+
+        //Hàm gọi APi lấy ra toàn bộ country
+        function callApiGetAllProductLine() {
+            "use strict";
+            $.ajax({
+                url: "http://localhost:8080/productline/service/all",
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    gTableProductLine.clear();
+                    gTableProductLine.rows.add(res);
+                    gTableProductLine.draw();
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+        }
+
+        //Hàm thực thi khi click vào hàng bất kỳ
+        function onProductLineTableRowClick(paramTableCell) {
+            var vClickedRow = $(paramTableCell).parents("tr");
+            var vRowData = gTableProductLine.row(vClickedRow).data();
+            gProductLineId = vRowData.id;
+            console.log("Đã click vào row có id là: " + gProductLineId);
+            callAjaxApiGetProductLineById(gProductLineId);
+        }
+
+        //Hàm thực thi khi nhấn nút Add product-line
+        function onBtnCreateProductLineClick() {
+            "uses strict";
+            var vObj = {
+                productLine: $("#inp-create-product-line").val().trim(),
+                description: $("#inp-create-description").val().trim()
+            };
+            var vCheck = validateData(vObj);
+            if (vCheck) {
+                $.ajax({
+                    url: "http://localhost:8080/productline/service/create",
+                    type: "POST",
+                    contentType: "application/json; charset=UTF-8",
+                    data: JSON.stringify(vObj),
+                    success: function(res) {
+                        console.log(res);
+                        alert("Tạo Product Line thành công");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        alert(err.responseText);
+                    }
+                })
+            }
+        }
+
+        //Hàm thực thi khi nhấn nút update country
+        function onBtnUpdateProductLineClick() {
+            "use strict";
+            if (gProductLineId == 0) {
+                alert("Hãy click chọn hàng product line cần update");
+            } else {
+                var vObj = {
+                    productLine: $("#inp-update-product-line").val().trim(),
+                    description: $("#inp-update-description").val().trim()
+                };
+
+                var vCheck = validateData(vObj);
+                if (vCheck) {
+                    $.ajax({
+                        url: "http://localhost:8080/productline/service/update/" + gProductLineId,
+                        type: "PUT",
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify(vObj),
+                        success: function(res) {
+                            console.log(res);
+                            alert("Update Product Line thành công");
+                            window.location.reload();
+                        },
+                        error: function(err) {
+                            console.log(err.responseText);
+                        }
+                    });
+                };
+            }
+        }
+
+        //Hàm thực thi khi nhấn nút delete product-line
+        function onBtnDeleteProductLineClick() {
+            "use strict";
+            if (gProductLineId == 0) {
+                alert("Hãy click chọn hàng Product Line cần delete");
+            } else {
+                $.ajax({
+                    url: "http://localhost:8080/productline/service/delete/" + gProductLineId,
+                    type: "DELETE",
+                    dataType: "json",
+                    success: function(res) {
+                        console.log(res);
+                        window.location.reload();
+                        alert("Xóa Product Line thành công");
+                    },
+                    error: function(err) {
+                        console.log(err.responseText);
+                    }
+                });
+            }
+        }
+
+        /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+        //Hàm gọi API để lấy dữ liệu product-line theo id
+        function callAjaxApiGetProductLineById(paramId) {
+            $.ajax({
+                url: "http://localhost:8080/productline/service/detail/" + paramId,
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    loadProductLineDataToForm(res);
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+        }
+
+
+        //Hàm load dữ liệu country lên form
+        function loadProductLineDataToForm(paramRes) {
+            $("#inp-update-id").val(paramRes.id);
+            $("#inp-update-product-line").val(paramRes.productLine);
+            $("#inp-update-description").val(paramRes.description);
+        }
+        //Hàm validate
+        function validateData(paramObj) {
+            "use strict"
+            if (paramObj.productLine === "") {
+                alert("Hãy nhập Product Line!");
+                return false;
+            } else if (paramObj.description === "") {
+                alert("Hãy nhập Mô tả");
+                return false;
+            }
+            return true;
+        }
+
+    });
+</script>
+
+</html>

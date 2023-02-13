@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Offices</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Pizza Project</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Hung</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Quản trị
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="customers.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Customers</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="payments.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Payments</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Orders</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orderdetails.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Order Details</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="products.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productlines.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Product Lines</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="employees.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Employees</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="offices.html" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Offices</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="filterorders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Filter Orders</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-12 text-center">
+                            <h1>Quản trị Office</h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="container">
+
+                                        <button id="btn-create-office" class="btn btn-success">Tạo Office</button>
+
+                                    </div>
+                                    <hr class="border">
+                                    <h3 class="text-center">Office Table</h3>
+                                    <table class="table table-bordered table-striped table-hover text-center" id="office-table">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>City</th>
+                                                <th>Phone</th>
+                                                <th>Address Line</th>
+                                                <th>State</th>
+                                                <th>Country</th>
+                                                <th>Territory</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            <tbody>
+
+                                            </tbody>
+                                    </table>
+                                    <!-- modal create office-->
+                                    <div class="modal" id="modal-create-office" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Create Office</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">City</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-city" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Phone</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-phone" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Address Line</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-address-line" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">State</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-state" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Country</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-country" class="form-control" type="text">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Territory</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-territory" class="form-control" type="text">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-success confirm-create">Confirm</button>
+                                                        <button type="button" class="btn btn-danger cancel-create" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- modal update office -->
+                                    <div class="modal" id="modal-update-office" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Update Office</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">City</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-city" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Phone</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-phone" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Address Line</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-address-line" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">State</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-state" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Country</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-country" class="form-control" type="text">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Territory</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-territory" class="form-control" type="text">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-success confirm-update">Confirm</button>
+                                                        <button type="button" class="btn btn-danger cancel-update" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- modal xóa office -->
+                                    <div class="modal" tabindex="-1" role="dialog" id="modal-delete-office">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Delete Office</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Bạn có muốn xóa Khách hàng này không?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" id="btn-confirm-delete">Xác nhận</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                </div>
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+</body>
+<script>
+    $(document).ready(function() {
+        /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+        //định nghĩa table country
+        const gCOL_ID = 0;
+        const gCOL_CITY = 1;
+        const gCOL_PHONE = 2;
+        const gCOL_ADDRESS_LINE = 3;
+        const gCOL_STATE = 4;
+        const gCOL_COUNTRY = 5;
+        const gCOL_TERRITORY = 6;
+        const gCOL_ACTION = 7;
+
+
+        var gId = 0;
+        const gCOLS = ["id", "city", "phone", "addressLine", "state", "country", "territory", "action"];
+        var gTableOffice = $("#office-table").DataTable({
+            columns: [{
+                data: gCOLS[gCOL_ID]
+            }, {
+                data: gCOLS[gCOL_CITY]
+            }, {
+                data: gCOLS[gCOL_PHONE]
+            }, {
+                data: gCOLS[gCOL_ADDRESS_LINE]
+            }, {
+                data: gCOLS[gCOL_STATE]
+            }, {
+                data: gCOLS[gCOL_COUNTRY]
+            }, {
+                data: gCOLS[gCOL_TERRITORY]
+            }, {
+                data: gCOLS[gCOL_ACTION]
+            }],
+            columnDefs: [{
+                "targets": gCOL_ACTION,
+                "defaultContent": `<i class="far fa-edit edit-office" style= "color : green ; cursor: pointer;" title="Edit " ></i>  
+                                <i class="fas fa-trash-alt delete-office" style= "color : red ; cursor: pointer;" title="Delete"></i>`
+            }],
+            searching: false,
+        });
+
+        /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+        onPageLoading();
+        //Gán event handler khi click vào hàng bất kỳ
+        $("#office-table").on("click", "td", function() {
+            onOfficeTableRowClick(this);
+        });
+
+        // gán sự kiện cho nút add Office
+        $("#btn-create-office").on("click", function() {
+            $("#modal-create-office").modal("show");
+        });
+
+        // confirm create modal
+        $(".confirm-create").on("click", function() {
+            onBtnCreateOfficeClick();
+        });
+
+        // cancel create modal
+        $(".cancel-create").on("click", function() {
+            $("#modal-create-office").modal("hide");
+        });
+
+        // gán sự kiện cho nút update office
+        $(document).on("click", ".edit-office", function() {
+            $("#modal-update-office").modal("show");
+        });
+
+        // nút confirm update 
+        $(".confirm-update").on("click", function() {
+            onBtnUpdateOfficeClick();
+        });
+
+        // cancel update 
+        $(".cancel-update").on("click", function() {
+            $("#modal-update-office").modal("hide");
+        });
+
+        // gán sự kiện cho nút delete office
+        $(document).on("click", ".delete-office", function() {
+            onBtnDeleteOfficeClick();
+        });
+
+
+        /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+        //hàm load trang
+        function onPageLoading() {
+            "use strict";
+            callApiGetAllOffice();
+        }
+
+        //Hàm gọi APi lấy ra toàn bộ country
+        function callApiGetAllOffice() {
+            "use strict";
+            $.ajax({
+                url: "http://localhost:8080/office/service/all",
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    gTableOffice.clear();
+                    gTableOffice.rows.add(res);
+                    gTableOffice.draw();
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+        }
+
+        //Hàm thực thi khi click vào hàng bất kỳ
+        function onOfficeTableRowClick(paramTableCell) {
+            var vClickedRow = $(paramTableCell).parents("tr");
+            var vRowData = gTableOffice.row(vClickedRow).data();
+            gId = vRowData.id;
+            console.log("Đã click vào row có id là: " + gId);
+            callAjaxApiGetOfficeById(gId);
+        }
+
+        //Hàm thực thi khi nhấn nút Add office
+        function onBtnCreateOfficeClick() {
+            "uses strict";
+            var vObj = {
+                city: "",
+                phone: "",
+                addressLine: "",
+                state: "",
+                country: "",
+                territory: "",
+            };
+
+            readDataFromWeb(vObj);
+            var vCheck = validateData(vObj);
+            if (vCheck) {
+                $.ajax({
+                    url: "http://localhost:8080/office/service/create",
+                    type: "POST",
+                    contentType: "application/json; charset=UTF-8",
+                    data: JSON.stringify(vObj),
+                    success: function(res) {
+                        console.log(res);
+                        alert("Tạo Office thành công");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        alert(err.responseText);
+                    }
+                })
+            }
+        }
+
+        //Hàm thực thi khi nhấn nút update country
+        function onBtnUpdateOfficeClick() {
+            "use strict";
+            if (gId == 0) {
+                alert("Hãy click chọn hàng Office cần update");
+            } else {
+                var vObj = {
+                    city: "",
+                    phone: "",
+                    addressLine: "",
+                    state: "",
+                    country: "",
+                    territory: "",
+                };
+                readDataFromWebUpdate(vObj);
+                var vCheck = validateData(vObj);
+                if (vCheck) {
+                    $.ajax({
+                        url: "http://localhost:8080/office/service/update/" + gId,
+                        type: "PUT",
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify(vObj),
+                        success: function(res) {
+                            console.log(res);
+                            alert("Update Office thành công");
+                            window.location.reload();
+                        },
+                        error: function(err) {
+                            console.log(err.responseText);
+                        }
+                    });
+                };
+            }
+        }
+
+        //Hàm thực thi khi nhấn nút delete office
+        function onBtnDeleteOfficeClick() {
+            "use strict";
+            if (gId == 0) {
+                alert("Hãy click chọn hàng Office cần delete");
+            } else if (confirm("Bạn có chắc chắn muõn xóa Office này không? \n") == true) {
+                $.ajax({
+                    url: "http://localhost:8080/office/service/delete/" + gId,
+                    type: "DELETE",
+                    dataType: "json",
+                    success: function(res) {
+                        console.log(res);
+                        window.location.reload();
+                        alert("Xóa Office thành công");
+                    },
+                    error: function(err) {
+                        console.log(err.responseText);
+                    }
+                });
+            }
+        }
+
+        /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+        //Hàm gọi API để lấy dữ liệu office theo id
+        function callAjaxApiGetOfficeById(paramId) {
+            $.ajax({
+                url: "http://localhost:8080/office/service/detail/" + paramId,
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    loadOfficeDataToForm(res);
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+        }
+
+
+        //Hàm load dữ liệu country lên form
+        function loadOfficeDataToForm(paramRes) {
+            $("#inp-update-city").val(paramRes.city);
+            $("#inp-update-phone").val(paramRes.phone);
+            $("#inp-update-address-line").val(paramRes.addressLine);
+            $("#inp-update-state").val(paramRes.state);
+            $("#inp-update-country").val(paramRes.country);
+            $("#inp-update-territory").val(paramRes.territory);
+        }
+
+
+        //Hàm thu thập dữ liệu để add
+        function readDataFromWeb(paramObj) {
+            "use strict";
+            paramObj.city = $("#inp-create-city").val().trim();
+            paramObj.phone = $("#inp-create-phone").val().trim();
+            paramObj.addressLine = $("#inp-create-address-line").val().trim();
+            paramObj.state = $("#inp-create-state").val().trim();
+            paramObj.country = $("#inp-create-country").val().trim();
+            paramObj.territory = $("#inp-create-territory").val().trim();
+        }
+
+
+        //Hàm thu thập dữ liệu để add
+        function readDataFromWebUpdate(paramObj) {
+            "use strict";
+            paramObj.city = $("#inp-update-city").val().trim();
+            paramObj.phone = $("#inp-update-phone").val().trim();
+            paramObj.addressLine = $("#inp-update-address-line").val().trim();
+            paramObj.state = $("#inp-update-state").val().trim();
+            paramObj.country = $("#inp-update-country").val().trim();
+            paramObj.territory = $("#inp-update-territory").val().trim();
+        }
+
+
+        //Hàm validate
+        function validateData(paramObj) {
+            "use strict"
+            if (paramObj.city === "") {
+                alert("Hãy nhập city");
+                return false;
+            } else if (paramObj.phone === "") {
+                alert("Hãy nhập phone và phải là số");
+                return false;
+            }
+            if (paramObj.addressLine === "") {
+                alert("Hãy nhập address line");
+                return false;
+            } else if (paramObj.state === "") {
+                alert("Hãy nhập state");
+                return false;
+            }
+            if (paramObj.country === "") {
+                alert("Hãy nhập country");
+                return false;
+            } else if (paramObj.territory === "") {
+                alert("Hãy nhập territory");
+                return false;
+            }
+            return true;
+        }
+
+    });
+</script>
+
+</html>

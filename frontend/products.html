@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Pizza Project</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Hung</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Quản trị
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="payments.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Payments</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Orders</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orderdetails.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Order Details</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="products.html" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productlines.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Product Lines</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="employees.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Employees</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="offices.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="filterorders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Filter Orders</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-12 text-center">
+                            <h1>Quản trị Sản phẩm</h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="container">
+
+                                        <button id="btn-create-product" class="btn btn-success">Tạo Sản phẩm mới</button>
+
+                                    </div>
+                                    <hr class="border">
+                                    <h3 class="text-center">Product Table</h3>
+                                    <table class="table table-bordered table-striped table-hover text-center" id="product-table">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Product Code</th>
+                                                <th>Product Name</th>
+                                                <th>Product Descripttion</th>
+                                                <th>Product Line ID</th>
+                                                <th>Product Scale</th>
+                                                <th>Product Vendor</th>
+                                                <th>Quantity In Stock</th>
+                                                <th>Buy Price</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            <tbody>
+
+                                            </tbody>
+                                    </table>
+                                    <!-- modal create product-->
+                                    <div class="modal" id="modal-create-product" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Create Product</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Product Code</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-product-code" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Product Name</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-product-name" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Product Description</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-product-description" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Product Line</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <select id="select-create-product-line" class="form-control border-primary">
+                                                                    <option value="none">--Chọn Product Line--</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Product Scale</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-product-scale" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Product Vendor</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-product-vendor" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Quantity In Stock</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-quantity-in-stock" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Buy Price</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-buy-price" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success confirm-create">Confirm</button>
+                                                    <button type="button" class="btn btn-danger cancel-create" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- modal update product -->
+                                <div class="modal" id="modal-update-product" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Update Product</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="col-12">
+                                                    <div class="row form-group">
+                                                        <div class="col-4">
+                                                            <label for="" class="font-weight-bold">ID</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inp-product-id" class="form-control" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row form-group">
+                                                        <div class="col-4">
+                                                            <label for="" class="font-weight-bold">Product Code</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inp-update-product-code" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row form-group">
+                                                        <div class="col-4">
+                                                            <label for="" class="font-weight-bold">Product Name</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inp-update-product-name" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row form-group">
+                                                        <div class="col-4">
+                                                            <label for="" class="font-weight-bold">Product Description</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inp-update-product-description" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row form-group">
+                                                        <div class="col-4">
+                                                            <label for="" class="font-weight-bold">Product Line</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inp-update-product-line" class="form-control" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row form-group">
+                                                        <div class="col-4">
+                                                            <label for="" class="font-weight-bold">Product Scale</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inp-update-product-scale" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row form-group">
+                                                        <div class="col-4">
+                                                            <label for="" class="font-weight-bold">Product Vendor</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inp-update-product-vendor" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row form-group">
+                                                        <div class="col-4">
+                                                            <label for="" class="font-weight-bold">Quantity In Stock</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inp-update-quantity-in-stock" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row form-group">
+                                                        <div class="col-4">
+                                                            <label for="" class="font-weight-bold">Buy Price</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inp-update-buy-price" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success confirm-update">Confirm</button>
+                                                    <button type="button" class="btn btn-danger cancel-update" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- modal xóa product -->
+                                <div class="modal" tabindex="-1" role="dialog" id="modal-delete-product">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Delete Product</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Bạn có muốn xóa Product này không?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" id="btn-confirm-delete">Xác nhận</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+</body>
+<script>
+    $(document).ready(function() {
+        /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+        //định nghĩa table country
+        const gCOL_ID = 0;
+        const gCOL_PRODUCT_CODE = 1;
+        const gCOL_PRODUCT_NAME = 2;
+        const gCOL_PRODUCT_DESCRIPTION = 3;
+        const gCOL_PRODUCT_LINE_ID = 4;
+        const gCOL_PRODUCT_SCALE = 5;
+        const gCOL_PRODUCT_VENDOR = 6;
+        const gCOL_QUANTITY_IN_STOCK = 7;
+        const gCOL_BUY_PRICE = 8;
+        const gCOL_ACTION = 9;
+
+        var gProductId = 0;
+        var gProductLine = [];
+        var gProductLineSelectId = 0;
+        var gSTT = 1;
+
+        const gCOLS = ["id", "productCode", "productName", "productDescripttion", "idProductLine", "productScale", "productVendor", "quantityInStock", "buyPrice", "action"];
+
+        var gTableProduct = $("#product-table").DataTable({
+            columns: [{
+                data: gCOLS[gCOL_ID]
+            }, {
+                data: gCOLS[gCOL_PRODUCT_CODE]
+            }, {
+                data: gCOLS[gCOL_PRODUCT_NAME]
+            }, {
+                data: gCOLS[gCOL_PRODUCT_DESCRIPTION]
+            }, {
+                data: gCOLS[gCOL_PRODUCT_LINE_ID]
+            }, {
+                data: gCOLS[gCOL_PRODUCT_SCALE]
+            }, {
+                data: gCOLS[gCOL_PRODUCT_VENDOR]
+            }, {
+                data: gCOLS[gCOL_QUANTITY_IN_STOCK]
+            }, {
+                data: gCOLS[gCOL_BUY_PRICE]
+            }, {
+                data: gCOLS[gCOL_ACTION]
+            }],
+            columnDefs: [{
+                targets: gCOL_ID,
+                render: function() {
+                    return gSTT++;
+                }
+            }, {
+                "targets": gCOL_ACTION,
+                "defaultContent": `<i class="far fa-edit edit-product" style= "color : green ; cursor: pointer;" title="Edit " ></i>  
+                                <i class="fas fa-trash-alt delete-product" style= "color : red ; cursor: pointer;" title="Delete"></i>`
+            }],
+            searching: false,
+        });
+
+        /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+        onPageLoading();
+        //Gán event handler khi click vào hàng bất kỳ
+        $("#product-table").on("click", "td", function() {
+            onProductTableRowClick(this);
+        });
+
+        // gán sự kiện cho nút add product
+        $("#btn-create-product").on("click", function() {
+            $("#modal-create-product").modal("show");
+            callApiGetAllProductLine();
+        });
+        $('#select-create-product-line').on('change', function() {
+            onBtnChangeIdSelectProductLine();
+        });
+        // confirm create modal
+        $(".confirm-create").on("click", function() {
+            onBtnCreateProductClick();
+        });
+
+        // cancel create modal
+        $(".cancel-create").on("click", function() {
+            $("#modal-create-product").modal("hide");
+        });
+
+        // gán sự kiện cho nút update product
+        $(document).on("click", ".edit-product", function() {
+            $("#modal-update-product").modal("show");
+        });
+
+        // nút confirm update 
+        $(".confirm-update").on("click", function() {
+            onBtnUpdateProductClick();
+        });
+
+        // cancel update 
+        $(".cancel-update").on("click", function() {
+            $("#modal-update-product").modal("hide");
+        });
+
+        // gán sự kiện cho nút delete product
+        $(document).on("click", ".delete-product", function() {
+            $("#modal-delete-product").modal("show");
+            onProductTableRowClick(this);
+
+        });
+        // delete product confirm
+        $("#btn-confirm-delete").on("click", function() {
+            onBtnDeleteProductClick();
+        });
+
+        /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+        //hàm load trang
+        function onPageLoading() {
+            "use strict";
+            callApiGetAllProduct();
+        }
+
+        //Hàm gọi APi lấy ra toàn bộ product
+        function callApiGetAllProduct() {
+            "use strict";
+            $.ajax({
+                url: "http://localhost:8080/product/service/all",
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    gTableProduct.clear();
+                    gTableProduct.rows.add(res);
+                    gTableProduct.draw();
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+        }
+
+        function callApiGetAllProductLine() {
+            "use strict";
+            $.ajax({
+                url: "http://localhost:8080/productline/service/all",
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    gProductLine = res;
+                    loadDataIntoSelect(gProductLine);
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+
+        }
+
+        function loadDataIntoSelect(paramObject) {
+            for (var bI = 0; bI < paramObject.length; bI++) {
+                $('#select-create-product-line').append($('<option>', {
+                    value: paramObject[bI].id,
+                    text: paramObject[bI].productLine
+                }));
+            }
+        }
+
+        function onBtnChangeIdSelectProductLine() {
+            "use strict";
+            gProductLineSelectId = $("#select-create-product-line").val(); // lấy ra provinceId từ select đc chọn
+            console.log("Product Line được chọn có Id: " + gProductLineSelectId);
+        }
+
+        //Hàm thực thi khi click vào hàng bất kỳ
+        function onProductTableRowClick(paramTableCell) {
+            var vClickedRow = $(paramTableCell).parents("tr");
+            var vRowData = gTableProduct.row(vClickedRow).data();
+            gProductId = vRowData.id;
+            console.log("Đã click vào row có id là: " + gProductId);
+            callAjaxApiGetProductById(gProductId);
+        }
+
+        //Hàm thực thi khi nhấn nút Add Product
+        function onBtnCreateProductClick() {
+            "uses strict";
+            var vObj = {
+                productCode: $("#inp-create-product-code").val().trim(),
+                productName: $("#inp-create-product-name").val().trim(),
+                productDescripttion: $("#inp-create-product-description").val().trim(),
+                productScale: $("#inp-create-product-scale").val().trim(),
+                productVendor: $("#inp-create-product-vendor").val().trim(),
+                quantityInStock: $("#inp-create-quantity-in-stock").val().trim(),
+                buyPrice: $("#inp-create-quantity-in-stock").val().trim()
+            };
+
+            var vCheck = validateCreateData(vObj);
+            if (vCheck) {
+                $.ajax({
+                    url: "http://localhost:8080/product/service/create/" + gProductLineSelectId,
+                    type: "POST",
+                    contentType: "application/json; charset=UTF-8",
+                    data: JSON.stringify(vObj),
+                    success: function(res) {
+                        console.log(res);
+                        alert("Tạo Product thành công");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        alert(err.responseText);
+                    }
+                })
+            }
+        }
+
+        //Hàm thực thi khi nhấn nút update country
+        function onBtnUpdateProductClick() {
+            "use strict";
+            if (gProductId == 0) {
+                alert("Hãy click chọn hàng product cần update");
+            } else {
+                var vObj = {
+                    productCode: $("#inp-update-product-code").val().trim(),
+                    productName: $("#inp-update-product-name").val().trim(),
+                    productDescripttion: $("#inp-update-product-description").val().trim(),
+                    idProductLine: $("#inp-update-product-line").val(),
+                    productScale: $("#inp-update-product-scale").val().trim(),
+                    productVendor: $("#inp-update-product-vendor").val().trim(),
+                    quantityInStock: $("#inp-update-quantity-in-stock").val().trim(),
+                    buyPrice: $("#inp-update-buy-price").val().trim()
+                };
+
+                var vCheck = validateUpdateData(vObj);
+                if (vCheck) {
+                    $.ajax({
+                        url: "http://localhost:8080/product/service/update/" + gProductId,
+                        type: "PUT",
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify(vObj),
+                        success: function(res) {
+                            console.log(res);
+                            alert("Cập nhật Product thành công");
+                            window.location.reload();
+                        },
+                        error: function(err) {
+                            console.log(err.responseText);
+                        }
+                    });
+                };
+            }
+        }
+
+        //Hàm thực thi khi nhấn nút delete Product
+        function onBtnDeleteProductClick() {
+            "use strict";
+            if (gProductId == 0) {
+                alert("Hãy click chọn hàng product cần delete");
+            } else {
+                $.ajax({
+                    url: "http://localhost:8080/product/service/delete/" + gProductId,
+                    type: "DELETE",
+                    dataType: "json",
+                    success: function(res) {
+                        console.log(res);
+                        window.location.reload();
+                        alert("Xóa Product thành công");
+                    },
+                    error: function(err) {
+                        console.log(err.responseText);
+                    }
+                });
+            }
+        }
+
+        /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+        //Hàm gọi API để lấy dữ liệu product theo id
+        function callAjaxApiGetProductById(paramId) {
+            $.ajax({
+                url: "http://localhost:8080/product/service/detail/" + paramId,
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    loadProductDataToForm(res);
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+        }
+
+
+        //Hàm load dữ liệu country lên form
+        function loadProductDataToForm(paramRes) {
+            $("#inp-product-id").val(paramRes.id);
+            $("#inp-update-product-code").val(paramRes.productCode);
+            $("#inp-update-product-name").val(paramRes.productName);
+            $("#inp-update-product-description").val(paramRes.productDescripttion);
+            $("#inp-update-product-line").val(paramRes.idProductLine);
+            $("#inp-update-product-scale").val(paramRes.productScale);
+            $("#inp-update-product-vendor").val(paramRes.productVendor);
+            $("#inp-update-quantity-in-stock").val(paramRes.quantityInStock);
+            $("#inp-update-buy-price").val(paramRes.buyPrice);
+        }
+        //Hàm validate
+        function validateCreateData(paramObj) {
+            "use strict"
+            var isSelectProductLine = $("#select-create-product-line option:selected").val();
+            if (paramObj.productCode === "") {
+                alert("Hãy nhập product code!");
+                return false;
+            } else if (paramObj.productName === "") {
+                alert("Hãy nhập product name!");
+                return false;
+            }
+            if (paramObj.productDescripttion === "") {
+                alert("Hãy nhập product description!");
+                return false;
+            }
+            if (gProductLineSelectId === 0 || isSelectProductLine === "none") {
+                alert("Hãy chọn product line id!");
+                return false;
+            }
+            return true;
+        }
+
+        function validateUpdateData(paramObj) {
+            "use strict"
+
+            if (paramObj.productCode === "") {
+                alert("Hãy nhập product code!");
+                return false;
+            } else if (paramObj.productName === "") {
+                alert("Hãy nhập product name!");
+                return false;
+            }
+            if (paramObj.productDescripttion === "") {
+                alert("Hãy nhập product description!");
+                return false;
+            }
+
+            return true;
+        }
+
+    });
+</script>
+
+</html>

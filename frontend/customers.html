@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Customers</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Pizza Project</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Hung</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Quản trị
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="customers.html" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Customers</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="payments.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Payments</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Orders</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orderdetails.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Order Details</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="products.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productlines.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Product Lines</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="employees.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Employees</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="offices.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Offices</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="filterorders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Filter Orders</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-12 text-center">
+                            <h1>Quản trị Customers</h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="container-fluid">
+
+                                        <button id="btn-create-customer" class="btn btn-success">Thêm khách hàng mới</button>
+
+                                    </div>
+                                    <hr class="border">
+                                    <h3 class="text-center">Customers Table</h3>
+                                    <table class="table table-bordered table-striped table-hover text-center" id="customer-table">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Last Name</th>
+                                                <th>First Name</th>
+                                                <th>Phone Number</th>
+                                                <th>Address</th>
+                                                <th>City</th>
+                                                <th>State</th>
+                                                <th>Country</th>
+                                                <th>Sale Rep Employee Number</th>
+                                                <th>Credit Limit</th>
+                                                <th>Orders</th>
+                                                <th>Payments</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            <tbody>
+
+                                            </tbody>
+                                    </table>
+                                    <!-- modal create customer-->
+                                    <div class="modal" id="modal-create-customer" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Tạo Khách hàng mới</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Last Name</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-last-name" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">First Name</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-first-name" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Phone Number</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-phone-number" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Address</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-address" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">City</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-city" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">State</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-state" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Postal Code</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-postal-code" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Country</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-country" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Sale Rep Employee Number</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-sale-rep" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Credit Limit</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-credit-limit" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success confirm-create">Tạo mới</button>
+                                                    <button type="button" class="btn btn-danger cancel-create" data-dismiss="modal">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- modal update customer -->
+                                    <div class="modal" id="modal-update-customer" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Cập nhật Khách hàng</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Customer ID</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-id-customer" class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Last Name</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-last-name" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">First Name</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-first-name" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Phone Number</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-phone-number" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Address</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-address" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">City</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-city" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">State</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-state" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Postal Code</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-postal-code" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Country</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-country" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Sale Rep Employee Number</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-sale-rep" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Credit Limit</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-credit-limit" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success confirm-update">Cập nhật</button>
+                                                    <button type="button" class="btn btn-danger cancel-update" data-dismiss="modal">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- modal xóa customer -->
+                                    <div class="modal" tabindex="-1" role="dialog" id="modal-delete-customer">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Delete customer</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Bạn có muốn xóa Khách hàng này không?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" id="btn-confirm-delete">Xác nhận</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+</body>
+<script>
+    $(document).ready(function() {
+        /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+        //định nghĩa table country
+        const gCOL_CUSTOMER_ID = 0;
+        const gCOL_CUSTOMER_LAST_NAME = 1;
+        const gCOL_CUSTOMER_FIRST_NAME = 2;
+        const gCOL_CUSTOMER_PHONE_NUMBER = 3;
+        const gCOL_CUSTOMER_ADDRESS = 4;
+        const gCOL_CUSTOMER_CITY = 5;
+        const gCOL_CUSTOMER_STATE = 6;
+        const gCOL_CUSTOMER_COUNTRY = 7;
+        const gCOL_CUSTOMER_SALE_REP_EMPLOYEE_NUMBER = 8;
+        const gCOL_CUSTOMER_CREDIT_LIMIT = 9;
+        const gCOL_CUSTOMER_ORDER_DETAIL = 10;
+        const gCOL_CUSTOMER_PAYMENT_DETAIL = 11;
+        const gCOL_CUSTOMER_ACTION = 12;
+        var gSTT = 1;
+        var gCustomerId = 0;
+        const gCOLS = ["id", "lastName", "firstName", "phoneNumber", "address", "city", "state", "postalCode", "country", "salesRepEmployeeNumber", "creditLimit", "orderDetail", "paymentDetail", "action"];
+        var gTableCustomer = $("#customer-table").DataTable({
+            columns: [{
+                data: gCOLS[gCOL_CUSTOMER_ID]
+            }, {
+                data: gCOLS[gCOL_CUSTOMER_LAST_NAME]
+            }, {
+                data: gCOLS[gCOL_CUSTOMER_FIRST_NAME]
+            }, {
+                data: gCOLS[gCOL_CUSTOMER_PHONE_NUMBER]
+            }, {
+                data: gCOLS[gCOL_CUSTOMER_ADDRESS]
+            }, {
+                data: gCOLS[gCOL_CUSTOMER_CITY]
+            }, {
+                data: gCOLS[gCOL_CUSTOMER_STATE]
+            }, {
+                data: gCOLS[gCOL_CUSTOMER_SALE_REP_EMPLOYEE_NUMBER]
+            }, {
+                data: gCOLS[gCOL_CUSTOMER_CREDIT_LIMIT]
+            }, {
+                data: gCOLS[gCOL_CUSTOMER_ORDER_DETAIL]
+            }, {
+                data: gCOLS[gCOL_CUSTOMER_PAYMENT_DETAIL]
+            }, {
+                data: gCOLS[gCOL_CUSTOMER_ACTION]
+            }],
+            columnDefs: [{
+                targets: gCOL_CUSTOMER_ID,
+                render: function() {
+                    return gSTT++;
+                }
+            }, {
+                targets: gCOL_CUSTOMER_ORDER_DETAIL,
+                defaultContent: "<button class = 'btn btn-primary btn-order-detail'>Chi tiết</button>"
+            }, {
+                targets: gCOL_CUSTOMER_PAYMENT_DETAIL,
+                defaultContent: "<button class = 'btn btn-primary btn-payment-detail'>Chi tiết</button>"
+            }, {
+                "targets": gCOL_CUSTOMER_ACTION,
+                "defaultContent": `<i class="far fa-edit edit-customer" style= "color : green ; cursor: pointer;" title="Edit " ></i>  
+                                <i class="fas fa-trash-alt delete-customer" style= "color : red ; cursor: pointer;" title="Delete"></i>`
+            }],
+            searching: false,
+        });
+
+        /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+        onPageLoading();
+        //Gán event handler khi click vào hàng bất kỳ
+        $("#customer-table").on("click", "td", function() {
+            onCustomerTableRowClick(this);
+        });
+
+        // gán sự kiện cho nút add customer
+        $("#btn-create-customer").on("click", function() {
+            $("#modal-create-customer").modal("show");
+        });
+        // confirm customer create
+        $(document).on("click", ".confirm-create", function() {
+            onBtnCreateCustomerClick();
+        });
+        // cancel customer create
+        $(".cancel-create").on("click", function() {
+            $("#modal-create-customer").modal("hide");
+        });
+        // gán sự kiện cho nút update customer
+        $(document).on("click", ".edit-customer", function() {
+            $("#modal-update-customer").modal("show");
+            onCustomerTableRowClick(this);
+        });
+        // confirm customer update
+        $(".confirm-update").on("click", function() {
+            onBtnUpdateCustomerClick();
+        });
+        // cancel customer update
+        $(".cancel-update").on("click", function() {
+            $("#modal-update-customer").modal("hide");
+        });
+
+        // gán sự kiện cho nút delete customer
+        $(document).on("click", ".delete-customer", function() {
+            $("#modal-delete-customer").modal("show");
+            onCustomerTableRowClick(this);
+        });
+        // delete customer confirm
+        $("#btn-confirm-delete").on("click", function() {
+            onBtnDeleteCustomerClick();
+        });
+        $(document).on("click", ".btn-order-detail", function() {
+            onBtnOrderDetailClick(this);
+        });
+        $(document).on("click", ".btn-payment-detail", function() {
+            onBtnPaymentDetailClick(this);
+        });
+
+        /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+        //hàm load trang
+        function onPageLoading() {
+            "use strict";
+            callApiGetAllCustomerShowOnTable();
+        }
+
+        //Hàm thực thi khi click vào hàng bất kỳ
+        function onCustomerTableRowClick(paramTableCell) {
+            var vClickedRow = $(paramTableCell).parents("tr");
+            var vRowData = gTableCustomer.row(vClickedRow).data();
+            gCustomerId = vRowData.id;
+            console.log("Đã click vào row có id là: " + gCustomerId);
+            callAjaxApiGetCustomerById(gCustomerId);
+        }
+
+        //Hàm thực thi khi nhấn nút add customer
+        function onBtnCreateCustomerClick() {
+            var vObj = {
+                lastName: $("#inp-create-last-name").val().trim(),
+                firstName: $("#inp-create-first-name").val().trim(),
+                phoneNumber: $("#inp-create-phone-number").val().trim(),
+                address: $("#inp-create-address").val().trim(),
+                city: $("#inp-create-city").val().trim(),
+                state: $("#inp-create-state").val().trim(),
+                postalCode: $("#inp-create-postal-code").val().trim(),
+                country: $("#inp-create-country").val().trim(),
+                salesRepEmployeeNumber: $("#inp-create-sale-rep").val().trim(),
+                creditLimit: $("#inp-create-credit-limit").val().trim()
+            };
+
+            var vCheck = validateCreateCustomerData(vObj);
+            if (vCheck == true) {
+
+                $.ajax({
+                    url: "http://localhost:8080/customers/service/create",
+                    type: "POST",
+                    contentType: "application/json",
+                    async: false,
+                    data: JSON.stringify(vObj),
+                    success: function(res) {
+                        console.log(res);
+                        alert("Tạo Khách hàng mới thành công");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        console.log(err.responseText);
+                    }
+                });
+            }
+
+        }
+
+        //Hàm thực thi khi nhấn nút update customer
+        function onBtnUpdateCustomerClick() {
+            "use strict";
+            if (gCustomerId == 0) {
+                alert("Hãy click chọn Khách hàng cần chỉnh sửa!");
+            } else {
+                var vObj = {
+                    id: $("#inp-update-id-customer").val().trim(),
+                    lastName: $("#inp-update-last-name").val().trim(),
+                    firstName: $("#inp-update-first-name").val().trim(),
+                    phoneNumber: $("#inp-update-phone-number").val().trim(),
+                    address: $("#inp-update-address").val().trim(),
+                    city: $("#inp-update-city").val().trim(),
+                    state: $("#inp-update-state").val().trim(),
+                    postalCode: $("#inp-update-postal-code").val().trim(),
+                    country: $("#inp-update-country").val().trim(),
+                    salesRepEmployeeNumber: $("#inp-update-sale-rep").val().trim(),
+                    creditLimit: $("#inp-update-credit-limit").val().trim()
+                };
+            };
+            var vCheck = validateUpdateCustomerData(vObj);
+            if (vCheck) {
+                $.ajax({
+                    url: "http://localhost:8080/customers/service/update/" + gCustomerId,
+                    type: "PUT",
+                    contentType: "application/json; charset=UTF-8",
+                    data: JSON.stringify(vObj),
+                    success: function(res) {
+                        console.log(res);
+                        alert("Cập nhật Khách hàng thành công");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        console.log(err.responseText);
+                    }
+                });
+            };
+        }
+
+
+        //Hàm thực thi khi nhấn nút Delete customer
+        function onBtnDeleteCustomerClick() {
+            "use strict";
+            console.log(gCustomerId);
+            if (gCustomerId == 0) {
+                alert("Hãy click chọn Khách hàng cần xóa!");
+            } else {
+                $.ajax({
+                    url: "http://localhost:8080/customers/service/delete/" + gCustomerId,
+                    type: "DELETE",
+                    dataType: "json",
+                    success: function(res) {
+                        console.log(res);
+                        alert("Xóa Khách hàng thành công");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        console.log(err.response);
+                    }
+                });
+            }
+        }
+
+        //Hàm gọi APi lấy ra toàn bộ customer
+        function callApiGetAllCustomerShowOnTable() {
+            "use strict";
+            $.ajax({
+                url: "http://localhost:8080/customers/service/all",
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    gTableCustomer.clear();
+                    gTableCustomer.rows.add(res);
+                    gTableCustomer.draw();
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+
+        }
+
+        //Hàm gọi API để lấy dữ liệu customer theo id
+        function callAjaxApiGetCustomerById(paramId) {
+            $.ajax({
+                url: "http://localhost:8080/customers/service/detail/" + paramId,
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    loadCustomerDataToForm(res);
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+        }
+        //Hàm load dữ liệu department lên form
+        function loadCustomerDataToForm(paramRes) {
+            $("#inp-update-id-customer").val(paramRes.id);
+            $("#inp-update-last-name").val(paramRes.lastName);
+            $("#inp-update-first-name").val(paramRes.firstName);
+            $("#inp-update-phone-number").val(paramRes.phoneNumber);
+            $("#inp-update-address").val(paramRes.address);
+            $("#inp-update-city").val(paramRes.city);
+            $("#inp-update-state").val(paramRes.state);
+            $("#inp-update-postal-code").val(paramRes.postalCode);
+            $("#inp-update-country").val(paramRes.country);
+            $("#inp-update-sale-rep").val(paramRes.salesRepEmployeeNumber);
+            $("#inp-update-credit-limit").val(paramRes.creditLimit);
+        }
+
+        //Hàm validate create department
+        function validateCreateCustomerData(paramObj) {
+            "use strict"
+            if (paramObj.lastName === "") {
+                alert("Hãy nhập Họ khách hàng!");
+                return false;
+            } else if (paramObj.firstName === "") {
+                alert("Hãy nhập tên khách hàng");
+                return false;
+            } else if (paramObj.phoneNumber === "") {
+                alert("Hãy nhập số điện hàng khách hàng");
+                return false;
+            }
+            return true;
+        }
+
+        // validate update album
+        function validateUpdateCustomerData(paramObj) {
+            "use strict"
+            if (paramObj.lastName === "") {
+                alert("Hãy nhập Họ khách hàng!");
+                return false;
+            } else if (paramObj.firstName === "") {
+                alert("Hãy nhập tên khách hàng");
+                return false;
+            } else if (paramObj.phoneNumber === "") {
+                alert("Hãy nhập số điện hàng khách hàng");
+                return false;
+            }
+            return true;
+        }
+
+        function onBtnOrderDetailClick(paramOrderDetailClick) {
+            console.log("Customer ID là: ", gCustomerId);
+            const gORDER_DETAIL_FORM_URL = "orders.html";
+            var vUrlSiteToOpen = gORDER_DETAIL_FORM_URL + "?customerId=" + gCustomerId;
+            window.location.href = vUrlSiteToOpen;
+        }
+
+        function onBtnPaymentDetailClick(paramPaymentDetailClick) {
+            console.log("Customer ID là: ", gCustomerId);
+            const gORDER_DETAIL_FORM_URL = "payments.html";
+            var vUrlSiteToOpen = gORDER_DETAIL_FORM_URL + "?customerId=" + gCustomerId;
+            window.location.href = vUrlSiteToOpen;
+        }
+    });
+</script>
+
+</html>

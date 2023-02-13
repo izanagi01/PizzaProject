@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Employees</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Pizza Project</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Hung</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Quản trị
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="customers.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Customers</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="payments.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Payments</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Orders</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orderdetails.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Order Details</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="products.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productlines.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Product Lines</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="employees.html" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Employees</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="offices.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Offices</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="filterorders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Filter Orders</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-12 text-center">
+                            <h1>Quản trị Nhân viên</h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="container">
+
+                                        <button id="btn-create-employee" class="btn btn-success">Tạo Nhân viên mới</button>
+
+                                    </div>
+                                    <hr class="border">
+                                    <h3 class="text-center">Employees Table</h3>
+                                    <table class="table table-bordered table-striped table-hover text-center" id="employee-table">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Last Name</th>
+                                                <th>First Name</th>
+                                                <th>Extension</th>
+                                                <th>Email</th>
+                                                <th>Office Code</th>
+                                                <th>Report To</th>
+                                                <th>Job Title</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            <tbody>
+
+                                            </tbody>
+                                    </table>
+                                    <!-- modal create employee-->
+                                    <div class="modal" id="modal-create-employee" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Create Employee</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Last Name</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-last-name" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">First Name</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-first-name" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Extension</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-create-extension" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Email</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-email" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Office Code</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-office-code" class="form-control" type="number">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Report To</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-report-to" class="form-control" type="number">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Job Title</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-job-title" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-success confirm-create">Confirm</button>
+                                                        <button type="button" class="btn btn-danger cancel-create" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- modal update employee -->
+                                    <div class="modal" id="modal-update-employee" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Update Employee</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Last Name</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-last-name" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">First Name</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-first-name" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Extension</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-extension" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Email</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-email" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Office Code</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-office-code" class="form-control" type="number">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Report To</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-report-to" class="form-control" type="number">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Job Title</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-job-title" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-success confirm-update">Confirm</button>
+                                                        <button type="button" class="btn btn-danger cancel-update" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- modal xóa employee -->
+                                    <div class="modal" tabindex="-1" role="dialog" id="modal-delete-employee">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Delete Employee</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Bạn có muốn xóa Nhân viên này không?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" id="btn-confirm-delete">Xác nhận</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                </div>
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+</body>
+<script>
+    $(document).ready(function() {
+        /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+        //định nghĩa table country
+        const gCOL_ID = 0;
+        const gCOL_LAST_NAME = 1;
+        const gCOL_FIRST_NAME = 2;
+        const gCOL_EXTENSION = 3;
+        const gCOL_EMAIL = 4;
+        const gCOL_OFFICE_CODE = 5;
+        const gCOL_REPORT_TO = 6;
+        const gCOL_JOB_TITLE = 7;
+        const gCOL_ACTION = 8;
+
+
+        var gId = 0;
+        const gCOLS = ["id", "lastName", "firstName", "extension", "email", "officeCode", "reportTo", "jobTitle", "action"];
+        var gTableEmployee = $("#employee-table").DataTable({
+            columns: [{
+                data: gCOLS[gCOL_ID]
+            }, {
+                data: gCOLS[gCOL_LAST_NAME]
+            }, {
+                data: gCOLS[gCOL_FIRST_NAME]
+            }, {
+                data: gCOLS[gCOL_EXTENSION]
+            }, {
+                data: gCOLS[gCOL_EMAIL]
+            }, {
+                data: gCOLS[gCOL_OFFICE_CODE]
+            }, {
+                data: gCOLS[gCOL_REPORT_TO]
+            }, {
+                data: gCOLS[gCOL_JOB_TITLE]
+            }, {
+                data: gCOLS[gCOL_ACTION]
+            }],
+            columnDefs: [{
+                "targets": gCOL_ACTION,
+                "defaultContent": `<i class="far fa-edit edit-employee" style= "color : green ; cursor: pointer;" title="Edit " ></i>  
+                                <i class="fas fa-trash-alt delete-employee" style= "color : red ; cursor: pointer;" title="Delete"></i>`
+            }],
+            searching: false,
+        });
+
+        /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+        onPageLoading();
+        //Gán event handler khi click vào hàng bất kỳ
+        $("#employee-table").on("click", "td", function() {
+            onEmployeeTableRowClick(this);
+        });
+
+        // gán sự kiện cho nút add Employee
+        $("#btn-create-employee").on("click", function() {
+            $("#modal-create-employee").modal("show");
+        });
+
+        // confirm create modal
+        $(".confirm-create").on("click", function() {
+            onBtnCreateEmployeeClick();
+        });
+
+        // cancel create modal
+        $(".cancel-create").on("click", function() {
+            $("#modal-create-employee").modal("hide");
+        });
+
+        // gán sự kiện cho nút update employee
+        $(document).on("click", ".edit-employee", function() {
+            $("#modal-update-employee").modal("show");
+        });
+
+        // nút confirm update 
+        $(".confirm-update").on("click", function() {
+            onBtnUpdateEmployeeClick();
+        });
+
+        // cancel update 
+        $(".cancel-update").on("click", function() {
+            $("#modal-update-employee").modal("hide");
+        });
+
+        // gán sự kiện cho nút delete employee
+        $(document).on("click", ".delete-employee", function() {
+            onBtnDeleteEmployeeClick();
+        });
+
+
+        /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+        //hàm load trang
+        function onPageLoading() {
+            "use strict";
+            callApiGetAllEmployee();
+        }
+
+        //Hàm gọi APi lấy ra toàn bộ employee
+        function callApiGetAllEmployee() {
+            "use strict";
+            $.ajax({
+                url: "http://localhost:8080/employee/service/all",
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    gTableEmployee.clear();
+                    gTableEmployee.rows.add(res);
+                    gTableEmployee.draw();
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+        }
+
+        //Hàm thực thi khi click vào hàng bất kỳ
+        function onEmployeeTableRowClick(paramTableCell) {
+            var vClickedRow = $(paramTableCell).parents("tr");
+            var vRowData = gTableEmployee.row(vClickedRow).data();
+            gId = vRowData.id;
+            console.log("Đã click vào row có id là: " + gId);
+            callAjaxApiGetEmployeeById(gId);
+        }
+
+        //Hàm thực thi khi nhấn nút create employee
+        function onBtnCreateEmployeeClick() {
+            "uses strict";
+            var vObj = {
+                lastName: "",
+                firstName: "",
+                extension: "",
+                email: "",
+                officeCode: "",
+                reportTo: "",
+                jobTitle: ""
+            };
+            readDataFromWeb(vObj);
+            var vCheck = validateData(vObj);
+            if (vCheck) {
+                $.ajax({
+                    url: "http://localhost:8080/employee/service/create",
+                    type: "POST",
+                    contentType: "application/json; charset=UTF-8",
+                    data: JSON.stringify(vObj),
+                    success: function(res) {
+                        console.log(res);
+                        alert("Tạo Nhân viên mới thành công");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        alert(err.responseText);
+                    }
+                })
+            }
+        }
+
+        //Hàm thực thi khi nhấn nút update employee
+        function onBtnUpdateEmployeeClick() {
+            "use strict";
+            if (gId == 0) {
+                alert("Hãy click chọn hàng Employee cần update");
+            } else {
+                var vObj = {
+                    lastName: "",
+                    firstName: "",
+                    extension: "",
+                    email: "",
+                    officeCode: "",
+                    reportTo: "",
+                    jobTitle: ""
+                };
+                readDataFromWebUpdate(vObj);
+                var vCheck = validateData(vObj);
+                if (vCheck) {
+                    $.ajax({
+                        url: "http://localhost:8080/employee/service/update/" + gId,
+                        type: "PUT",
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify(vObj),
+                        success: function(res) {
+                            console.log(res);
+                            alert("Cập nhật Nhân viên thành công!");
+                            window.location.reload();
+                        },
+                        error: function(err) {
+                            console.log(err.responseText);
+                        }
+                    });
+                };
+            }
+        }
+
+        //Hàm thực thi khi nhấn nút delete employee
+        function onBtnDeleteEmployeeClick() {
+            "use strict";
+            if (gId == 0) {
+                alert("Hãy click chọn hàng Employee cần delete");
+            } else {
+                $.ajax({
+                    url: "http://localhost:8080/employee/service/delete/" + gId,
+                    type: "DELETE",
+                    dataType: "json",
+                    success: function(res) {
+                        console.log(res);
+                        window.location.reload();
+                        alert("Xóa nhân viên thành công!");
+                    },
+                    error: function(err) {
+                        console.log(err.responseText);
+                    }
+                });
+            }
+        }
+
+        /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+        //Hàm gọi API để lấy dữ liệu employee theo id
+        function callAjaxApiGetEmployeeById(paramId) {
+            $.ajax({
+                url: "http://localhost:8080/employee/service/detail/" + paramId,
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    loadEmployeeDataToForm(res);
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+        }
+
+        //Hàm load dữ liệu employee lên form
+        function loadEmployeeDataToForm(paramRes) {
+            $("#inp-update-last-name").val(paramRes.lastName);
+            $("#inp-update-first-name").val(paramRes.firstName);
+            $("#inp-update-extension").val(paramRes.extension);
+            $("#inp-update-email").val(paramRes.email);
+            $("#inp-update-office-code").val(paramRes.officeCode);
+            $("#inp-update-report-to").val(paramRes.reportTo);
+            $("#inp-update-job-title").val(paramRes.jobTitle);
+        }
+        //Hàm thu thập dữ liệu để add
+        function readDataFromWeb(paramObj) {
+            "use strict";
+            paramObj.lastName = $("#inp-create-last-name").val().trim();
+            paramObj.firstName = $("#inp-create-first-name").val().trim();
+            paramObj.extension = $("#inp-create-extension").val().trim();
+            paramObj.email = $("#inp-create-email").val().trim();
+            paramObj.officeCode = $("#inp-create-office-code").val().trim();
+            paramObj.reportTo = $("#inp-create-report-to").val().trim();
+            paramObj.jobTitle = $("#inp-create-job-title").val().trim();
+        }
+
+        //Hàm thu thập dữ liệu để add
+        function readDataFromWebUpdate(paramObj) {
+            "use strict";
+            paramObj.lastName = $("#inp-update-last-name").val().trim();
+            paramObj.firstName = $("#inp-update-first-name").val().trim();
+            paramObj.extension = $("#inp-update-extension").val().trim();
+            paramObj.email = $("#inp-update-email").val().trim();
+            paramObj.officeCode = $("#inp-update-office-code").val().trim();
+            paramObj.reportTo = $("#inp-update-report-to").val().trim();
+            paramObj.jobTitle = $("#inp-update-job-title").val().trim();
+        }
+        //Hàm validate
+        function validateData(paramObj) {
+            "use strict"
+            if (paramObj.lastName === "") {
+                alert("Hãy nhập last name");
+                return false;
+            } else if (paramObj.firstName === "") {
+                alert("Hãy nhập first name");
+                return false;
+            }
+            if (paramObj.extension === "") {
+                alert("Hãy nhập extension");
+                return false;
+            } else if (paramObj.email === "") {
+                alert("Hãy nhập email");
+                return false;
+            }
+            if (paramObj.officeCode === "") {
+                alert("Hãy nhập office code");
+                return false;
+            } else if (paramObj.reportTo === "") {
+                alert("Hãy nhập report to");
+                return false;
+            } else if (paramObj.jobTitle === "") {
+                alert("Hãy nhập job title");
+                return false;
+            }
+            return true;
+        }
+    });
+</script>
+
+</html>

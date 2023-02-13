@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Orders</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Pizza Project</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Hung</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Quản trị
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="customers.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Customers</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="payments.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Payments</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orders.html" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Orders</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="orderdetails.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Order Details</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="products.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productlines.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Product Lines</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="employees.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Employees</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="offices.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Offices</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-12 text-center">
+                            <h1>Quản trị Orders</h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="container-fluid">
+
+                                        <button id="btn-create-order" class="btn btn-success">Thêm đơn hàng mới</button>
+
+                                    </div>
+                                    <hr class="border">
+                                    <h3 class="text-center">Orders Table</h3>
+                                    <table class="table table-bordered table-striped table-hover text-center" id="order-table">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Order Date</th>
+                                                <th>Required Date</th>
+                                                <th>Shipped Date</th>
+                                                <th>Status</th>
+                                                <th>Comments</th>
+                                                <th>Customer Name</th>
+                                                <th>Order Detail</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            <tbody>
+
+                                            </tbody>
+                                    </table>
+                                    <!-- modal create order-->
+                                    <div class="modal" id="modal-create-order" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Tạo Đơn hàng mới</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Order Date</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="date" id="inp-create-order-date" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Required Date</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="date" id="inp-create-required-date" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Status</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-status" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Comments</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-comment" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Customer ID</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-create-customer-id" class="form-control" disabled>
+                                                                <!--<select id="select-customer-id" class="form-control border-primary">
+                                                                    <option value="none">--Chọn Customer ID--</option>
+                                                                </select> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success confirm-create">Tạo mới</button>
+                                                    <button type="button" class="btn btn-danger cancel-create" data-dismiss="modal">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- modal update order -->
+                                    <div class="modal" id="modal-update-order" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Cập nhật Đơn hàng</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">ID</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="text" id="inp-update-order-id" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Order Date</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="datetime" id="inp-update-order-date" class="form-control"disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Required Date</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="datetime" id="inp-update-required-date" class="form-control"disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Shipped Date</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input type="date" id="inp-update-shipped-date" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Status</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-status" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Comments</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-comment" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-4">
+                                                                <label for="" class="font-weight-bold">Customer ID</label>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <input id="inp-update-customer-id" class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success confirm-update">Cập nhật</button>
+                                                    <button type="button" class="btn btn-danger cancel-update" data-dismiss="modal">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- modal xóa order -->
+                                    <div class="modal" tabindex="-1" role="dialog" id="modal-delete-order">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Xóa đơn hàng</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Bạn có muốn xóa Đơn hàng này không?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" id="btn-confirm-delete">Xác nhận</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+</body>
+<script>
+    $(document).ready(function() {
+        /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+        //định nghĩa table country
+        const gCOL_ORDER_ID = 0;
+        const gCOL_ORDER_DATE = 1;
+        const gCOL_ORDER_REQUIRED_DATE = 2;
+        const gCOL_ORDER_SHIPPED_DATE = 3;
+        const gCOL_ORDER_STATUS = 4;
+        const gCOL_ORDER_COMMENTS = 5;
+        const gCOL_CUSTOMER_NAME = 6;
+        const gCOL_ORDER_DETAIL = 7;
+        const gCOL_ORDER_ACTION = 8;
+        var gSTT = 1;
+        var gOrderId = 0;
+        var gCustomerId = 0;
+        var gCustomerName = "";
+        var gCustomerDetail = [];
+        const gCOLS = ["id", "orderDate", "requiredDate", "shippedDate", "status", "comments", "customerName", "action"];
+        var gTableOrder = $("#order-table").DataTable({
+            columns: [{
+                data: gCOLS[gCOL_ORDER_ID]
+            }, {
+                data: gCOLS[gCOL_ORDER_DATE]
+            }, {
+                data: gCOLS[gCOL_ORDER_REQUIRED_DATE]
+            }, {
+                data: gCOLS[gCOL_ORDER_SHIPPED_DATE]
+            }, {
+                data: gCOLS[gCOL_ORDER_STATUS]
+            }, {
+                data: gCOLS[gCOL_ORDER_COMMENTS]
+            }, {
+                data: gCOLS[gCOL_CUSTOMER_NAME],
+            }, {
+                data: gCOLS[gCOL_ORDER_DETAIL]
+            }, {
+                data: gCOLS[gCOL_ORDER_ACTION]
+            }],
+            columnDefs: [{
+                targets: gCOL_ORDER_ID,
+                render: function() {
+                    return gSTT++;
+                }
+            }, {
+                targets: gCOL_ORDER_DETAIL,
+                defaultContent: "<button class = 'btn btn-primary btn-order-detail'>Chi tiết</button>"
+            }, {
+                "targets": gCOL_CUSTOMER_NAME,
+                render: function() {
+                    return gCustomerName;
+                }
+            }, {
+                "targets": gCOL_ORDER_ACTION,
+                "defaultContent": `<i class="far fa-edit edit-order" style= "color : green ; cursor: pointer;" title="Edit " ></i>  
+                                <i class="fas fa-trash-alt delete-order" style= "color : red ; cursor: pointer;" title="Delete"></i>`
+            }],
+            searching: false,
+        });
+
+        /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+
+        onPageLoading();
+        //Gán event handler khi click vào hàng bất kỳ
+        $("#order-table").on("click", "td", function() {
+            onOrderTableRowClick(this);
+        });
+
+        // gán sự kiện cho nút add customer
+        $("#btn-create-order").on("click", function() {
+            $("#modal-create-order").modal("show");
+            $("#inp-create-customer-id").val(gCustomerId);
+            // callApiGetAllCustomerLoadToSelect();
+        });
+        // $('#select-customer-id').on('change', function() {
+        //  onBtnChangeIdSelectCustomer();
+        //});
+        // confirm customer create
+        $(document).on("click", ".confirm-create", function() {
+            onBtnCreateOrderClick();
+        });
+        // cancel customer create
+        $(".cancel-create").on("click", function() {
+            $("#modal-create-order").modal("hide");
+        });
+        // gán sự kiện cho nút update customer
+        $(document).on("click", ".edit-order", function() {
+            $("#modal-update-order").modal("show");
+            onOrderTableRowClick(this);
+        });
+        // confirm customer update
+        $(".confirm-update").on("click", function() {
+            onBtnUpdateOrderClick();
+        });
+        // cancel customer update
+        $(".cancel-update").on("click", function() {
+            $("#modal-update-order").modal("hide");
+        });
+
+        // gán sự kiện cho nút delete customer
+        $(document).on("click", ".delete-order", function() {
+            $("#modal-delete-order").modal("show");
+            onOrderTableRowClick(this);
+        });
+        // delete customer confirm
+        $("#btn-confirm-delete").on("click", function() {
+            onBtnDeleteOrderClick();
+        });
+        $(document).on("click", ".btn-order-detail", function() {
+            onBtnOrderDetailClick(this);
+        });
+        /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+        //hàm load trang
+        function onPageLoading() {
+            "use strict";
+            var vUrlString = window.location.href;
+            console.log(vUrlString);
+            var vUrl = new URL(vUrlString);
+            var vGetValueId = vUrl.searchParams.get("customerId");
+            const vFORM_LIST_VIEW = "customers.html";
+            if (vGetValueId == null || vGetValueId == "") {
+                alert("Không có Customer ID");
+                window.location.href = vFORM_LIST_VIEW;
+            }
+            gCustomerId = vGetValueId;
+            console.log("customer ID = ", gCustomerId);
+            callAjaxApiGetCustomerById(gCustomerId);
+            callApiGetOrderShowOnTable();
+
+
+        }
+        //Hàm thực thi khi click vào hàng bất kỳ
+        function onOrderTableRowClick(paramTableCell) {
+            var vClickedRow = $(paramTableCell).parents("tr");
+            var vRowData = gTableOrder.row(vClickedRow).data();
+            gOrderId = vRowData.id;
+            console.log("Đã click vào row có id là: " + gOrderId);
+            callAjaxApiGetOrderById(gOrderId);
+        }
+        //Hàm gọi API để lấy dữ liệu customer theo id
+        function callAjaxApiGetCustomerById(paramId) {
+            $.ajax({
+                url: "http://localhost:8080/customers/service/detail/" + paramId,
+                async: false,
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    gCustomerDetail = res;
+                    gCustomerName = gCustomerDetail.lastName + " " + gCustomerDetail.firstName;
+                    console.log(gCustomerName);
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+        }
+
+
+        //Hàm thực thi khi nhấn nút add order
+        function onBtnCreateOrderClick() {
+            var vObj = {
+                orderDate: $("#inp-create-order-date").val().trim(),
+                requiredDate: $("#inp-create-required-date").val().trim(),
+                status: $("#inp-create-status").val().trim(),
+                comments: $("#inp-create-comment").val().trim()
+            };
+
+            var vCheck = validateCreateOrderData(vObj);
+            if (vCheck == true) {
+
+                $.ajax({
+                    url: "http://localhost:8080/order/service/create/" + gCustomerId,
+                    type: "POST",
+                    contentType: "application/json",
+                    async: false,
+                    data: JSON.stringify(vObj),
+                    success: function(res) {
+                        console.log(res);
+                        alert("Tạo Đơn hàng mới thành công");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        console.log(err.responseText);
+                    }
+                });
+            }
+
+        }
+
+        //Hàm thực thi khi nhấn nút update order
+        function onBtnUpdateOrderClick() {
+            "use strict";
+            if (gOrderId == 0) {
+                alert("Hãy click chọn Đơn hàng cần chỉnh sửa!");
+            } else {
+                var vObj = {
+                    id: $("#inp-update-order-id").val().trim(),
+                    requiredDate: $("#inp-update-required-date").val().trim(),
+                    shippedDate: $("#inp-update-shipped-date").val().trim(),
+                    status: $("#inp-update-status").val().trim(),
+                    comments: $("#inp-update-comment").val().trim(),
+                };
+            };
+            var vCheck = validateUpdateOrderData(vObj);
+            if (vCheck) {
+                $.ajax({
+                    url: "http://localhost:8080/order/service/update/" + gOrderId,
+                    type: "PUT",
+                    contentType: "application/json; charset=UTF-8",
+                    data: JSON.stringify(vObj),
+                    success: function(res) {
+                        console.log(res);
+                        alert("Cập nhật Đơn hàng thành công");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        console.log(err.responseText);
+                    }
+                });
+            };
+        }
+
+
+        //Hàm thực thi khi nhấn nút Delete order
+        function onBtnDeleteOrderClick() {
+            "use strict";
+            console.log(gOrderId);
+            if (gOrderId == 0) {
+                alert("Hãy click chọn Đơn hàng cần xóa!");
+            } else {
+                $.ajax({
+                    url: "http://localhost:8080/order/service/delete/" + gOrderId,
+                    type: "DELETE",
+                    dataType: "json",
+                    success: function(res) {
+                        console.log(res);
+                        alert("Xóa Đơn hàng thành công");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        console.log(err.response);
+                    }
+                });
+            }
+        }
+
+        //Hàm gọi APi lấy ra toàn bộ order
+        function callApiGetOrderShowOnTable() {
+            "use strict";
+            $.ajax({
+                url: "http://localhost:8080/order/service/customerId/" + gCustomerId,
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    gTableOrder.clear();
+                    gTableOrder.rows.add(res);
+                    gTableOrder.draw();
+
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+
+        }
+
+        //Hàm gọi API để lấy dữ liệu order theo id
+        function callAjaxApiGetOrderById(paramId) {
+            $.ajax({
+                url: "http://localhost:8080/order/service/detail/" + paramId,
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    loadOrderDataToForm(res);
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+        }
+        //Hàm load dữ liệu order lên form
+        function loadOrderDataToForm(paramRes) {
+            $("#inp-update-order-id").val(paramRes.id);
+            $("#inp-update-order-date").val(paramRes.orderDate);
+            $("#inp-update-required-date").val(paramRes.requiredDate);
+            $("#inp-update-status").val(paramRes.status);
+            $("#inp-update-comment").val(paramRes.comments);
+            $("#inp-update-customer-id").val(gCustomerId);
+        }
+
+        //Hàm validate create order
+        function validateCreateOrderData(paramObj) {
+            "use strict"
+            if (paramObj.orderDate === "") {
+                alert("Hãy nhập Ngày đặt!");
+                return false;
+            } else if (paramObj.requiredDate === "") {
+                alert("Hãy nhập ngày cần hàng");
+                return false;
+            }
+            return true;
+        }
+
+        // validate update order
+        function validateUpdateOrderData(paramObj) {
+            "use strict"
+            if (paramObj.orderDate === "") {
+                alert("Hãy nhập Ngày đặt!");
+                return false;
+            } else if (paramObj.requiredDate === "") {
+                alert("Hãy nhập ngày cần hàng");
+                return false;
+            }
+            return true;
+        }
+
+        function onBtnOrderDetailClick(paramOrderDetailClick) {
+            console.log("Order ID là: ", gOrderId);
+            const gORDER_DETAIL_FORM_URL = "orderdetails.html";
+            var vUrlSiteToOpen = gORDER_DETAIL_FORM_URL + "?orderId=" + gOrderId;
+            window.location.href = vUrlSiteToOpen;
+        }
+    });
+</script>
+
+</html>
